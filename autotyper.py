@@ -1,10 +1,10 @@
-﻿"""
-Auto Typer â€” A desktop app that simulates real keyboard typing.
+"""
+Auto Typer — A desktop app that simulates real keyboard typing.
 Paste your text, switch to any window, and watch it type automatically.
 
 Hotkeys:
-    Ctrl+Shift+T  â†’ Start typing
-    Escape         â†’ Stop typing immediately
+    Ctrl+Shift+T  → Start typing
+    Escape         → Stop typing immediately
 
 Usage:
     python autotyper.py
@@ -17,9 +17,9 @@ import time
 from pynput import keyboard as pynput_keyboard
 
 
-# â”€â”€â”€ Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ─── Configuration ──────────────────────────────────────────────────────────────
 
-APP_TITLE = "âŒ¨ Auto Typer"
+APP_TITLE = "⌨ Auto Typer"
 APP_SIZE = "620x700"
 MIN_SIZE = (520, 600)
 
@@ -44,7 +44,7 @@ pyautogui.FAILSAFE = True
 pyautogui.PAUSE = 0
 
 
-# â”€â”€â”€ AutoTyperApp â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ─── AutoTyperApp ───────────────────────────────────────────────────────────────
 
 class AutoTyperApp(ctk.CTk):
     """Main application window."""
@@ -52,36 +52,36 @@ class AutoTyperApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        # â”€â”€ Window setup â”€â”€
+        # ── Window setup ──
         self.title(APP_TITLE)
         self.geometry(APP_SIZE)
         self.minsize(*MIN_SIZE)
         self.configure(fg_color=COLOR_BG)
         self.resizable(True, True)
 
-        # â”€â”€ State â”€â”€
+        # ── State ──
         self._typing = False
         self._stop_event = threading.Event()
         self._typing_thread = None
         self._countdown_active = False
 
-        # â”€â”€ Build UI â”€â”€
+        # ── Build UI ──
         self._build_header()
         self._build_text_area()
         self._build_controls()
         self._build_status_bar()
         self._build_countdown_overlay()
 
-        # â”€â”€ Global hotkey listener â”€â”€
+        # ── Global hotkey listener ──
         self._hotkey_listener = None
         self._start_hotkey_listener()
 
-        # â”€â”€ Handle window close â”€â”€
+        # ── Handle window close ──
         self.protocol("WM_DELETE_WINDOW", self._on_close)
 
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
     # UI Building
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
 
     def _build_header(self):
         """App title and subtitle."""
@@ -90,7 +90,7 @@ class AutoTyperApp(ctk.CTk):
 
         title = ctk.CTkLabel(
             header,
-            text="âŒ¨  Auto Typer",
+            text="⌨  Auto Typer",
             font=(FONT_FAMILY, 26, "bold"),
             text_color=COLOR_TEXT,
         )
@@ -98,7 +98,7 @@ class AutoTyperApp(ctk.CTk):
 
         subtitle = ctk.CTkLabel(
             header,
-            text="Paste text below â†’ set speed & delay â†’ press Start â†’ switch windows",
+            text="Paste text below → set speed & delay → press Start → switch windows",
             font=(FONT_FAMILY, 12),
             text_color=COLOR_TEXT_DIM,
         )
@@ -164,7 +164,7 @@ class AutoTyperApp(ctk.CTk):
         )
         controls_card.pack(fill="x", padx=24, pady=(4, 8))
 
-        # â”€â”€ Row 1: Speed â”€â”€
+        # ── Row 1: Speed ──
         speed_frame = ctk.CTkFrame(controls_card, fg_color="transparent")
         speed_frame.pack(fill="x", padx=16, pady=(14, 4))
 
@@ -198,7 +198,7 @@ class AutoTyperApp(ctk.CTk):
         self.speed_slider.set(50)
         self.speed_slider.pack(fill="x", padx=16, pady=(0, 10))
 
-        # â”€â”€ Row 2: Delay + Buttons â”€â”€
+        # ── Row 2: Delay + Buttons ──
         row2 = ctk.CTkFrame(controls_card, fg_color="transparent")
         row2.pack(fill="x", padx=16, pady=(0, 14))
 
@@ -235,10 +235,25 @@ class AutoTyperApp(ctk.CTk):
         )
         sec_label.pack(side="left", padx=(4, 0))
 
+        # Fix IDE Indent Checkbox
+        self.smart_indent_cb = ctk.CTkCheckBox(
+            row2,
+            text="Fix IDE Indent",
+            font=(FONT_FAMILY, 11),
+            text_color=COLOR_TEXT_DIM,
+            fg_color=COLOR_ACCENT,
+            hover_color=COLOR_ACCENT_HOVER,
+            border_color=COLOR_BORDER,
+            checkbox_width=18,
+            checkbox_height=18,
+        )
+        self.smart_indent_cb.pack(side="left", padx=(16, 0))
+        self.smart_indent_cb.select()
+
         # Stop button
         self.stop_btn = ctk.CTkButton(
             row2,
-            text="â–   Stop",
+            text="■  Stop",
             width=90,
             height=36,
             font=(FONT_FAMILY, 13, "bold"),
@@ -253,7 +268,7 @@ class AutoTyperApp(ctk.CTk):
         # Start button
         self.start_btn = ctk.CTkButton(
             row2,
-            text="â–¶  Start Typing",
+            text="▶  Start Typing",
             width=140,
             height=36,
             font=(FONT_FAMILY, 13, "bold"),
@@ -284,7 +299,7 @@ class AutoTyperApp(ctk.CTk):
 
         self.status_label = ctk.CTkLabel(
             bottom_row,
-            text="Ready â€” paste your text and press Start",
+            text="Ready — paste your text and press Start",
             font=(FONT_FAMILY, 11),
             text_color=COLOR_TEXT_DIM,
         )
@@ -292,7 +307,7 @@ class AutoTyperApp(ctk.CTk):
 
         hotkey_hint = ctk.CTkLabel(
             bottom_row,
-            text="Ctrl+Shift+T  start  â€¢  Esc  stop",
+            text="Ctrl+Shift+T  start  •  Esc  stop",
             font=(FONT_FAMILY, 10),
             text_color=COLOR_TEXT_DIM,
         )
@@ -304,7 +319,7 @@ class AutoTyperApp(ctk.CTk):
             self,
             fg_color="transparent",
         )
-        # Not packed yet â€” shown only during countdown
+        # Not packed yet — shown only during countdown
 
         self.countdown_number = ctk.CTkLabel(
             self.countdown_overlay,
@@ -322,9 +337,9 @@ class AutoTyperApp(ctk.CTk):
         )
         self.countdown_subtext.pack(pady=(0, 40))
 
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
     # Event Handlers
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
 
     def _update_char_count(self, event=None):
         """Update the character count label."""
@@ -337,16 +352,20 @@ class AutoTyperApp(ctk.CTk):
         speed = int(value)
         self.speed_value_label.configure(text=f"{speed} chars/sec")
 
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
     # Typing Engine
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
 
     def _start_typing(self):
         """Begin the countdown, then type."""
         text = self.textbox.get("1.0", "end-1c").strip()
+        
+        if hasattr(self, 'smart_indent_cb') and self.smart_indent_cb.get():
+            # Remove leading spaces and tabs from each line to prevent IDE double-indentation
+            text = "\n".join(line.lstrip(" \t") for line in text.split("\n"))
 
         if not text:
-            self._set_status("âš  Nothing to type â€” paste some text first", COLOR_COUNTDOWN)
+            self._set_status("⚠ Nothing to type — paste some text first", COLOR_COUNTDOWN)
             return
 
         if self._typing or self._countdown_active:
@@ -367,7 +386,7 @@ class AutoTyperApp(ctk.CTk):
 
     def _countdown_then_type(self, text: str, delay: int):
         """Run countdown, then type the text."""
-        # â”€â”€ Countdown â”€â”€
+        # ── Countdown ──
         self.after(0, lambda: self._show_countdown_overlay(True))
 
         for remaining in range(delay, 0, -1):
@@ -377,25 +396,25 @@ class AutoTyperApp(ctk.CTk):
                 return
             self.after(0, lambda r=remaining: self.countdown_number.configure(text=str(r)))
             self.after(0, lambda r=remaining: self._set_status(
-                f"â± Starting in {r} seconds â€” switch to your target window!", COLOR_COUNTDOWN
+                f"⏱ Starting in {r} seconds — switch to your target window!", COLOR_COUNTDOWN
             ))
             time.sleep(1)
 
         self.after(0, lambda: self._show_countdown_overlay(False))
         self._countdown_active = False
 
-        # â”€â”€ Type â”€â”€
+        # ── Type ──
         self._typing = True
         speed = int(self.speed_slider.get())
         interval = 1.0 / speed if speed > 0 else 0.02
         total = len(text)
 
-        self.after(0, lambda: self._set_status(f"âŒ¨ Typing... 0/{total:,}", COLOR_ACCENT_LIGHT))
+        self.after(0, lambda: self._set_status(f"⌨ Typing... 0/{total:,}", COLOR_ACCENT_LIGHT))
 
         for i, char in enumerate(text):
             if self._stop_event.is_set():
                 self.after(0, lambda idx=i: self._set_status(
-                    f"â¹ Stopped at {idx:,}/{total:,} characters", COLOR_DANGER
+                    f"⏹ Stopped at {idx:,}/{total:,} characters", COLOR_DANGER
                 ))
                 self.after(0, self._reset_ui)
                 return
@@ -409,16 +428,16 @@ class AutoTyperApp(ctk.CTk):
             self.after(0, lambda p=progress: self.progress_bar.set(p))
             if typed % max(1, total // 50) == 0 or typed == total:
                 self.after(0, lambda t=typed: self._set_status(
-                    f"âŒ¨ Typing... {t:,}/{total:,}", COLOR_ACCENT_LIGHT
+                    f"⌨ Typing... {t:,}/{total:,}", COLOR_ACCENT_LIGHT
                 ))
 
             time.sleep(interval)
 
-        # â”€â”€ Done â”€â”€
+        # ── Done ──
         self._typing = False
         self.after(0, lambda: self.progress_bar.set(1.0))
         self.after(0, lambda: self._set_status(
-            f"âœ“ Done! Typed {total:,} characters", COLOR_SUCCESS
+            f"✓ Done! Typed {total:,} characters", COLOR_SUCCESS
         ))
         self.after(0, self._reset_ui)
 
@@ -432,7 +451,7 @@ class AutoTyperApp(ctk.CTk):
             try:
                 pyautogui.write(char, interval=0)
             except Exception:
-                # Fallback for special/unicode characters â€” use clipboard approach
+                # Fallback for special/unicode characters — use clipboard approach
                 try:
                     import pyperclip
                     pyperclip.copy(char)
@@ -466,9 +485,9 @@ class AutoTyperApp(ctk.CTk):
             self.countdown_overlay.place_forget()
             self.countdown_number.configure(text="")
 
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
     # Global Hotkeys (pynput)
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
 
     def _start_hotkey_listener(self):
         """Listen for global hotkeys using pynput."""
@@ -478,7 +497,7 @@ class AutoTyperApp(ctk.CTk):
         def on_press(key):
             self._pressed_keys.add(key)
 
-            # Ctrl+Shift+T â†’ Start
+            # Ctrl+Shift+T → Start
             ctrl = (
                 pynput_keyboard.Key.ctrl_l in self._pressed_keys
                 or pynput_keyboard.Key.ctrl_r in self._pressed_keys
@@ -498,7 +517,7 @@ class AutoTyperApp(ctk.CTk):
             if ctrl and shift and t_pressed:
                 self.after(0, self._start_typing)
 
-            # Escape â†’ Stop
+            # Escape → Stop
             if key == pynput_keyboard.Key.esc:
                 if self._typing or self._countdown_active:
                     self.after(0, self._stop_typing)
@@ -512,9 +531,9 @@ class AutoTyperApp(ctk.CTk):
         self._hotkey_listener.daemon = True
         self._hotkey_listener.start()
 
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
     # Cleanup
-    # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ────────────────────────────────────────────────────────────────────────
 
     def _on_close(self):
         """Clean shutdown."""
@@ -524,7 +543,7 @@ class AutoTyperApp(ctk.CTk):
         self.destroy()
 
 
-# â”€â”€â”€ Entry Point â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ─── Entry Point ────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("dark")
@@ -532,4 +551,3 @@ if __name__ == "__main__":
 
     app = AutoTyperApp()
     app.mainloop()
-
