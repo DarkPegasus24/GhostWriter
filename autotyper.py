@@ -235,10 +235,10 @@ class AutoTyperApp(ctk.CTk):
         )
         sec_label.pack(side="left", padx=(4, 0))
 
-        # Fix IDE Indent Checkbox
+        # Fix IDE Indent & Brackets Checkbox
         self.smart_indent_cb = ctk.CTkCheckBox(
             row2,
-            text="Fix IDE Indent",
+            text="Fix IDE Indent & Brackets",
             font=(FONT_FAMILY, 11),
             text_color=COLOR_TEXT_DIM,
             fg_color=COLOR_ACCENT,
@@ -450,6 +450,11 @@ class AutoTyperApp(ctk.CTk):
         else:
             try:
                 pyautogui.write(char, interval=0)
+                
+                # If IDE mode is enabled, delete auto-inserted closing brackets
+                if hasattr(self, 'smart_indent_cb') and self.smart_indent_cb.get():
+                    if char in '{[("':
+                        pyautogui.press("delete")
             except Exception:
                 # Fallback for special/unicode characters — use clipboard approach
                 try:
